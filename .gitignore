@@ -1,47 +1,40 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# WPILib
+bin/
+build/
+dist/
+sysProps.xml
+workbench.xmi
 
-# Folder config file
-Desktop.ini
+# IDE
+*.ipr
+*.iml
+*.iws
+out/
+tmp/
+.settings/
+.loadpath
+.project
+/.idea
+.classpath
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# Toast/GradleRIO
+run/
+.gradle/
+gradle/.launch/
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
+# OS Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
 .AppleDouble
 .LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
 .Trashes
-.VolumeIcon.icns
+ehthumbs.db
+Thumbs.db
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# backup files
+*~
+
+# directory for XML generated after running junit tests through ant
+junit/
