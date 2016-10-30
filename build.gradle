@@ -1,14 +1,14 @@
 buildscript {
-  repositories {
-	mavenCentral()
-	maven {
-		name = "GradleRIO"
-		url = "http://dev.imjac.in/maven"
-	}
-  }
-  dependencies {
-    classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+'
-  }
+    repositories {
+        mavenCentral()
+        maven {
+            name = "GradleRIO"
+            url = "http://dev.imjac.in/maven"
+        }
+    }
+    dependencies {
+        classpath group: 'jaci.openrio.gradle', name: 'GradleRIO', version: '+'
+    }
 }
 
 apply plugin: 'java'
@@ -17,31 +17,31 @@ apply plugin: 'eclipse'
 apply plugin: 'GradleRIO'
 
 sourceSets {
-  main {
-    java {
-      srcDir 'src'
+    main {
+        java {
+            srcDir 'src'
+        }
     }
-  }
 }
 
 gradlerio.robotClass = 'org.usfirst.frc5933.Rosieppbs.Robot'
 gradlerio.team = "5933"
 
 def robotManifest = {
-  attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
-  attributes 'Robot-Class': gradlerio.robotClass
+    attributes 'Main-Class': 'edu.wpi.first.wpilibj.RobotBase'
+    attributes 'Robot-Class': gradlerio.robotClass
 }
 
 jar {
-  from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-  manifest robotManifest
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    manifest robotManifest
 }
 
 task genJavadoc(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
-  from javadoc.destinationDir
+    classifier = 'javadoc'
+    from javadoc.destinationDir
 }
 
 artifacts {
-  archives genJavadoc
+    archives genJavadoc
 }
