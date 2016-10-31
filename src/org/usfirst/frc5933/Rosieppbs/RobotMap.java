@@ -48,7 +48,6 @@ public class RobotMap {
         driveTrainCANTalon4 = new CANTalon(13);
         LiveWindow.addActuator("DriveTrain", "CAN Talon 4", driveTrainCANTalon4);
         
-        // fl rl fr rr 12, 11, 10 ,13
         driveTrainRobotDrive4 = new RobotDrive(driveTrainCANTalon1, driveTrainCANTalon2,
               driveTrainCANTalon3, driveTrainCANTalon4);
         
