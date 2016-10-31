@@ -15,7 +15,7 @@ Children:
             validators: &id002 [CANID]
             value: '12'
         Base: CAN Talon
-        Name: CAN Talon 1
+        Name: FrontLeft
       - Children: []
         Properties:
           CAN ID: !!robotbuilder.data.properties.ChoicesProperty
@@ -25,7 +25,7 @@ Children:
             validators: *id002
             value: '11'
         Base: CAN Talon
-        Name: CAN Talon 2
+        Name: RightLeft
       - Children: []
         Properties:
           CAN ID: !!robotbuilder.data.properties.ChoicesProperty
@@ -35,7 +35,7 @@ Children:
             validators: *id002
             value: '10'
         Base: CAN Talon
-        Name: CAN Talon 3
+        Name: FrontRight
       - Children: []
         Properties:
           CAN ID: !!robotbuilder.data.properties.ChoicesProperty
@@ -45,7 +45,7 @@ Children:
             validators: *id002
             value: '13'
         Base: CAN Talon
-        Name: CAN Talon 4
+        Name: RearRight
       Properties:
         Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.5,
           name: Sensitivity, validators: null, value: 0.5}
@@ -54,31 +54,31 @@ Children:
           name: Right Rear Motor
           type: PIDOutput
           validators: [RobotDrive4, ChildDropdownSelected]
-          value: DriveTrain CAN Talon 4
+          value: DriveTrain RearRight
         Right Front Motor: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 2
           name: Right Front Motor
           type: PIDOutput
           validators: [RobotDrive4, ChildDropdownSelected]
-          value: DriveTrain CAN Talon 3
+          value: DriveTrain FrontRight
         Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
           name: Maximum Output, validators: null, value: 1.0}
         Left Front Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
-          default: false, name: Left Front Motor Inverted, validators: null, value: false}
+          default: false, name: Left Front Motor Inverted, validators: null, value: true}
         Right Front Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
-          default: false, name: Right Front Motor Inverted, validators: null, value: false}
+          default: false, name: Right Front Motor Inverted, validators: null, value: true}
         Left Rear Motor: !!robotbuilder.data.properties.ChildSelectionProperty
           default: 1
           name: Left Rear Motor
           type: PIDOutput
           validators: [RobotDrive4, ChildDropdownSelected]
-          value: DriveTrain CAN Talon 2
+          value: DriveTrain RightLeft
         Right Rear Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
-          default: false, name: Right Rear Motor Inverted, validators: null, value: false}
+          default: false, name: Right Rear Motor Inverted, validators: null, value: true}
         Safety Expiration Time: !!robotbuilder.data.properties.DoubleProperty {default: 0.1,
           name: Safety Expiration Time, validators: null, value: 0.1}
         Left Rear Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
-          default: false, name: Left Rear Motor Inverted, validators: null, value: false}
+          default: false, name: Left Rear Motor Inverted, validators: null, value: true}
         Safety Enabled: !!robotbuilder.data.properties.BooleanProperty {default: true,
           name: Safety Enabled, validators: null, value: true}
         Left Front Motor: !!robotbuilder.data.properties.ChildSelectionProperty
@@ -86,9 +86,9 @@ Children:
           name: Left Front Motor
           type: PIDOutput
           validators: [RobotDrive4, ChildDropdownSelected]
-          value: DriveTrain CAN Talon 1
+          value: DriveTrain FrontLeft
       Base: Robot Drive 4
-      Name: Robot Drive 4
+      Name: RobotDrive
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
