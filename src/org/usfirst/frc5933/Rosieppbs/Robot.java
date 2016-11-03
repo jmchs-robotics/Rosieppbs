@@ -102,7 +102,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         if (oi.getJoystick1().getRawButton(1)){
-        	pingPongBallCannon.wheelSpeed(.5);
+        	pingPongBallCannon.wheelSpeed(-.5);
         }
         if (!(oi.getJoystick1().getRawButton(1))){
         	pingPongBallCannon.wheelSpeed(0);
