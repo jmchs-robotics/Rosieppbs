@@ -135,19 +135,35 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during operator control
 	 */
+	boolean notPressed = true;
+	long startTime = 0;
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		if (oi.getJoystick1().getRawButton(1)){
+		/*if (oi.getJoystick1().getRawButton(1)){
 			pingPongBallCannon.wheelSpeed(-.5);
 		}
 		if (!(oi.getJoystick1().getRawButton(1))){
 			pingPongBallCannon.wheelSpeed(0);
+		}*/
+		
+		if(oi.getJoystick1().getRawButton(1)){
+			pingPongBallCannon.pistonStart();
+		}if(!oi.getJoystick1().getRawButton(1)){
+			pingPongBallCannon.pistonStop();
 		}
 
-		if (oi.getJoystick1().getRawButton(5)) {
+		
+		if (oi.getJoystick1().getRawButton(5)&&notPressed) {
+			startTime = System.currentTimeMillis();
+			pingPongBallCannon.wheelSpeed(-.5);
+			notPressed = false;
+		}if ((startTime <= (System.currentTimeMillis()-1000))&&!notPressed){
 			pingPongBallCannon.pistonStart();
-		}if (!(oi.getJoystick1().getRawButton(5))) {
+		}if ((startTime <= (System.currentTimeMillis() - 2750))&&!notPressed) {
 			pingPongBallCannon.pistonStop();
+		}if ((startTime <= (System.currentTimeMillis() - 2800))&&!notPressed){
+			notPressed = true;
+			pingPongBallCannon.wheelSpeed(0);
 		}
 
 		if (arcadeDrive != null){

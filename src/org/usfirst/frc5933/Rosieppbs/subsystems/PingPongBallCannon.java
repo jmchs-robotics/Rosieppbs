@@ -53,7 +53,7 @@ public class PingPongBallCannon extends Subsystem {
 	}
 
 	public void pistonStart() {
-		piston.set(.5);
+		piston.set(-.5);
 	}
 
 	public void pistonStop() {
