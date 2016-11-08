@@ -121,7 +121,7 @@ Children:
           validators: &id005 [PWMOutput]
           value: '0'
       Base: Speed Controller
-      Name: Wheel
+      Name: FlyWheel
     - Children: []
       Properties:
         Type: !!robotbuilder.data.properties.ChoicesProperty
@@ -137,7 +137,7 @@ Children:
           validators: *id005
           value: '7'
       Base: Speed Controller
-      Name: Piston
+      Name: BallReleasePiston
     Properties:
       Default command parameters: !!robotbuilder.data.properties.ParametersProperty
         default: []
@@ -166,7 +166,7 @@ Children:
         validators: [Joystick]
         value: '0'
     Base: Joystick
-    Name: Joystick 1
+    Name: XBoxJoystick
   Properties: {}
   Base: OI
   Name: Operator Interface
@@ -188,7 +188,7 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
-    Name: Autonomous Command
+    Name: DefaultAutonomousCommand
   - Children: []
     Properties:
       Parameters: !!robotbuilder.data.properties.ParametersProperty
@@ -204,15 +204,16 @@ Children:
         validators: null
         value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
-    Name: ArcadeDrive
+    Name: DefaultTeleopCommand
   Properties: {}
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\frc5933\workspace',
-    extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ..\}
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Andrew
+      Van Uitert\workspace', extension: null, folder: true, name: Eclipse Workspace,
+    validators: null, value: ..\}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
   Autonomous command parameters: !!robotbuilder.data.properties.ParametersProperty
@@ -230,9 +231,10 @@ Properties:
     name: Export Subsystems, validators: null, value: true}
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\frc5933\',
-    extension: null, folder: true, name: Wiring file location, validators: null, value: .\}
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Andrew
+      Van Uitert\', extension: null, folder: true, name: Wiring file location, validators: null,
+    value: .\}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-    name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
+    name: Autonomous Command, type: Command, validators: null, value: DefaultAutonomousCommand}
 Base: Robot
 Name: Rosieppbs
