@@ -19,6 +19,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import java.util.Scanner;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -137,6 +139,9 @@ public class Robot extends IterativeRobot {
 	 */
 	boolean notPressed = true;
 	long startTime = 0;
+	long spinUpTime = 1000;
+	long pistonRunTime = 1620; //start at 1485
+	double wheelSpeed = -.5;
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		/*if (oi.getJoystick1().getRawButton(1)){
@@ -152,18 +157,33 @@ public class Robot extends IterativeRobot {
 			pingPongBallCannon.pistonStop();
 		}
 
+		if(oi.getJoystick1().getRawButton(4)){
+			wheelSpeed = -.58;
+		}
+		
+		if(oi.getJoystick1().getRawButton(3)){
+			wheelSpeed = -.35;
+		}
+		
+		if(oi.getJoystick1().getRawButton(2)){
+			wheelSpeed = -.4167;//mid speed
+		}
 		
 		if (oi.getJoystick1().getRawButton(5)&&notPressed) {
 			startTime = System.currentTimeMillis();
-			pingPongBallCannon.wheelSpeed(-.5);
+			pingPongBallCannon.wheelSpeed(wheelSpeed);
 			notPressed = false;
-		}if ((startTime <= (System.currentTimeMillis()-1000))&&!notPressed){
+		}if ((startTime <= (System.currentTimeMillis() - spinUpTime))&&!notPressed){
 			pingPongBallCannon.pistonStart();
-		}if ((startTime <= (System.currentTimeMillis() - 2750))&&!notPressed) {
+		}if ((startTime <= (System.currentTimeMillis() - (spinUpTime + pistonRunTime)))&&!notPressed) {//try this at 1485 first, change after testing.
 			pingPongBallCannon.pistonStop();
-		}if ((startTime <= (System.currentTimeMillis() - 2800))&&!notPressed){
+		}if ((startTime <= (System.currentTimeMillis() - (spinUpTime + pistonRunTime + 500)))&&!notPressed&&!oi.getJoystick1().getRawButton(5)){
 			notPressed = true;
 			pingPongBallCannon.wheelSpeed(0);
+			spinUpTime = 1000;
+		}else if ((startTime <= (System.currentTimeMillis() - (spinUpTime + pistonRunTime + 500)))&&!notPressed&&oi.getJoystick1().getRawButton(5)){
+			notPressed = true;
+			spinUpTime = 0;
 		}
 
 		if (arcadeDrive != null){
