@@ -55,9 +55,22 @@ public class Helmsman {
 			socket_.receive(packet);  
 			if (packet.getData().length > 0) {  
 				// TODO: Parse the data and set the direction and degrees  
-				direction_ = NADA;  
-				degrees_ = 0; 
+				
 				String stuffInThePacket = new String (packet.getData(),0,packet.getLength());
+				//read data
+				if (stuffInThePacket.contains("L")){
+					direction_ = LEFT; 
+
+				}else if (stuffInThePacket.endsWith("R")){
+					direction_ = RIGHT; 
+					
+				}else if (stuffInThePacket.endsWith("C")){
+					
+					direction_ = NADA; 
+				}else{
+					System.err.println("My mayonnaise went bad!! :(");
+				} 
+				degrees_ = 0; 
 				System.out.println("Done got that data! " + stuffInThePacket);
 			}  
 		} catch (IOException e) {  
