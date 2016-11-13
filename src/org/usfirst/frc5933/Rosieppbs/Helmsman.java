@@ -58,7 +58,7 @@ public class Helmsman {
 				
 				String stuffInThePacket = new String (packet.getData(),0,packet.getLength());
 				//read data
-				if (stuffInThePacket.contains("L")){
+				if (stuffInThePacket.endsWith("L")){
 					direction_ = LEFT; 
 
 				}else if (stuffInThePacket.endsWith("R")){
