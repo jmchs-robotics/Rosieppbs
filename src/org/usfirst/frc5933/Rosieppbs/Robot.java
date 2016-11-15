@@ -146,6 +146,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during operator control
 	 */
+	final static double initBatteryVoltage = 12.60;
 	boolean notPressed = true;
 	long startTime = 0;
 	long spinUpTime = 1000;
@@ -158,7 +159,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		//This returns the same number as the driver station battery voltage number.
-		double current = RobotMap.pingPongBallCannonPowerDistributionPanel1.getVoltage();
+		double voltage = RobotMap.pingPongBallCannonPowerDistributionPanel1.getVoltage();
 		//System.out.println("Current reads as " + current + " volts.");
 
 		if(oi.getXBoxJoystick().getRawButton(1)){
@@ -193,14 +194,14 @@ public class Robot extends IterativeRobot {
 
 		if (oi.getXBoxJoystick().getRawButton(5)&&notPressed) {
 			startTime = System.currentTimeMillis();
-			pingPongBallCannon.wheelSpeed(wheelSpeed * 12.60 / current);
+			pingPongBallCannon.wheelSpeed(wheelSpeed * initBatteryVoltage / voltage);
 			notPressed = false;
 		}if ((startTime <= (System.currentTimeMillis() - spinUpTime))&&!notPressed){
 			pingPongBallCannon.pistonStart();
-			pingPongBallCannon.wheelSpeed(wheelSpeed * 12.60 / current);
+			pingPongBallCannon.wheelSpeed(wheelSpeed * initBatteryVoltage / voltage);
 		}if ((startTime <= (System.currentTimeMillis() - (spinUpTime + pistonRunTime)))&&!notPressed) {//try this at 1485 first, change after testing.
 			pingPongBallCannon.pistonStop();
-			pingPongBallCannon.wheelSpeed(wheelSpeed * 12.60 / current);
+			pingPongBallCannon.wheelSpeed(wheelSpeed * initBatteryVoltage / voltage);
 		}if ((startTime <= (System.currentTimeMillis() - (spinUpTime + pistonRunTime + 500)))&&!notPressed&&!oi.getXBoxJoystick().getRawButton(5)){
 			notPressed = true;
 			pingPongBallCannon.wheelSpeed(0);
