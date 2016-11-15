@@ -71,7 +71,7 @@ public class Robot extends IterativeRobot {
 		arcadeDrive = new DefaultTeleopCommand();
 		helmsman_ = new Helmsman("10.59.33.21", 59330);  
 		LIDAR lidar = new LIDAR();
-		lidar.getRange();2
+		lidar.getRange();
 		if (!helmsman_.connect()) {  
 			System.err.println("Failed to connect to the Helmsman and I really need my mayonnaise");  
 		}  else{
