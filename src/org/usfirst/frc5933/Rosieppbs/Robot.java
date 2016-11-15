@@ -160,11 +160,8 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		//This returns the same number as the driver station battery voltage number.
-<<<<<<< HEAD
 		double current = RobotMap.pingPongBallCannonPowerDistributionPanel.getVoltage();
-=======
-		double voltage = RobotMap.pingPongBallCannonPowerDistributionPanel1.getVoltage();
->>>>>>> origin/master
+		double voltage = RobotMap.pingPongBallCannonPowerDistributionPanel.getVoltage();
 		//System.out.println("Current reads as " + current + " volts.");
 
 		if(oi.getXBoxJoystick().getRawButton(1)){
