@@ -41,21 +41,27 @@ public class LIDAR extends Command {
     	
     	byte[] initiateCommand = {MEASURE_REGISTER, MEASURE_VALUE};
     	byte[] readMeasurement = new byte[RESPONSE_LENGTH];
+    	byte[] measurementReady = new byte[1];
     	
-    	try {
-    		boolean z = LIDARDevice.writeBulk(initiateCommand);
+    	//boolean z = LIDARDevice.writeBulk(initiateCommand);
+		boolean z = LIDARDevice.write(MEASURE_REGISTER, MEASURE_VALUE);
+		try {
 			Thread.sleep(20);
-			boolean y = LIDARDevice.write(REGISTER_HIGHLOWB,0x0);
-			Thread.sleep(20);
-			boolean x = LIDARDevice.readOnly(readMeasurement, RESPONSE_LENGTH);
-			System.out.println(z + " " + y + " " + x);
-			System.out.println(readMeasurement[0] + ", " + readMeasurement[1]);
-			int range = (makeUnsignedByte(readMeasurement[0])<<8) + makeUnsignedByte(readMeasurement[1]);
-			System.out.println("Range is: " + range);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
+		do{
+			LIDARDevice.read(0x01, 1, measurementReady);
+		} while ((readMeasurement[0] & (byte)0x1) == 0);
+			
+		//boolean y = LIDARDevice.write(REGISTER_HIGHLOWB,0x0);
+		boolean x = LIDARDevice.read(REGISTER_HIGHLOWB, RESPONSE_LENGTH, readMeasurement);
+		//boolean x = LIDARDevice.readOnly(readMeasurement, RESPONSE_LENGTH);
+		System.out.println("REturn Values " + z + " " + " " + x);
+		System.out.println("Readmeasurements " + readMeasurement[0] + ", " + readMeasurement[1]);
+		int range = (makeUnsignedByte(readMeasurement[0])<<8) + makeUnsignedByte(readMeasurement[1]);
+		System.out.println("Range is: " + range);	
     }
 
     // Called repeatedly when this Command is scheduled to run
