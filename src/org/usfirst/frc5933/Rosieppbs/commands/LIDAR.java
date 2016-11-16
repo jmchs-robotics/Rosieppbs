@@ -37,16 +37,19 @@ public class LIDAR extends Command {
     	I2C LIDARDevice;
     	LIDARDevice = new I2C(I2C.Port.kOnboard, LIDARLite_ADDRESS);
     	
+    	System.err.println(I2C.Port.kOnboard +"   " + LIDARLite_ADDRESS);
+    	
     	byte[] initiateCommand = {MEASURE_REGISTER, MEASURE_VALUE};
     	byte[] readMeasurement = new byte[RESPONSE_LENGTH];
     	
     	try {
-    		LIDARDevice.writeBulk(initiateCommand);
+    		boolean z = LIDARDevice.writeBulk(initiateCommand);
 			Thread.sleep(20);
-			LIDARDevice.write(REGISTER_HIGHLOWB,0x0);
+			boolean y = LIDARDevice.write(REGISTER_HIGHLOWB,0x0);
 			Thread.sleep(20);
-			LIDARDevice.readOnly(readMeasurement, RESPONSE_LENGTH);
-			
+			boolean x = LIDARDevice.readOnly(readMeasurement, RESPONSE_LENGTH);
+			System.out.println(z + " " + y + " " + x);
+			System.out.println(readMeasurement[0] + ", " + readMeasurement[1]);
 			int range = (makeUnsignedByte(readMeasurement[0])<<8) + makeUnsignedByte(readMeasurement[1]);
 			System.out.println("Range is: " + range);
 		} catch (InterruptedException e) {
