@@ -249,7 +249,7 @@ Children:
           name: Command
           type: Command
           validators: *id007
-          value: ReleaseLowSpeed
+          value: NullCommand
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id008
           default: whileHeld
@@ -278,7 +278,7 @@ Children:
           name: Command
           type: Command
           validators: *id007
-          value: NullCommand
+          value: ReleaseLowSpeed
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id008
           default: whileHeld

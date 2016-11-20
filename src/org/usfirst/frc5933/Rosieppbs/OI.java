@@ -79,9 +79,9 @@ public class OI {
         rightBumper = new JoystickButton(xBoxJoystick, 6);
         rightBumper.whenPressed(new NullCommand());
         bButton = new JoystickButton(xBoxJoystick, 2);
-        bButton.whenPressed(new NullCommand());
+        bButton.whenPressed(new ReleaseLowSpeed());
         aButton = new JoystickButton(xBoxJoystick, 1);
-        aButton.whenPressed(new ReleaseLowSpeed());
+        aButton.whenPressed(new NullCommand());
         yButton = new JoystickButton(xBoxJoystick, 4);
         yButton.whenPressed(new ReleaseMediumSpeed());
         xButton = new JoystickButton(xBoxJoystick, 3);
