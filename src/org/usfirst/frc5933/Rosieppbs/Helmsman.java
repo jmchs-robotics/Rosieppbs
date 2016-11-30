@@ -22,8 +22,11 @@ public class Helmsman {
 	private DatagramSocket socket_;  
 	private InetAddress addr_;  
 	private String direction_ = new String();  
-	private double degrees_ = 0;  
-
+	private double degrees_x = 0;
+	private double degrees_y = 0;
+	private double degrees_width = 0;
+	private double distance = 0;
+	
 	public Helmsman(String ip, int port) {  
 		ip_ = ip;  
 		port_ = port;  
@@ -57,24 +60,39 @@ public class Helmsman {
 				// TODO: Parse the data and set the direction and degrees  
 				
 				String stuffInThePacket = new String (packet.getData(),0,packet.getLength());
+				stuffInThePacket = stuffInThePacket.toLowerCase(); //standardize everything. Just in case.
 				//read data
-				if (stuffInThePacket.endsWith("L")){
+				
+				
+				//Array contains x position, y, width, distance, L/C/R 
+				//e.g. -100.14,20.33,15.75,172.56,L
+				String[] packetParsing = stuffInThePacket.split(","); //now is: {"-100.14","20.33","15.75","172.56","L"}
+				
+				//
+				
+				degrees_x = Double.parseDouble(packetParsing[0]);
+				degrees_y = Double.parseDouble(packetParsing[1]);
+				degrees_width = Double.parseDouble(packetParsing[2]);
+				distance = Double.parseDouble(packetParsing[3]);
+				
+				if (packetParsing[4] == "l"){
 					direction_ = LEFT; 
 
-				}else if (stuffInThePacket.endsWith("R")){
+				}else if (packetParsing[4] == "r"){
 					direction_ = RIGHT; 
 					
-				}else if (stuffInThePacket.endsWith("C")){
+				}else if (packetParsing[4] == "c"){
 					
 					direction_ = NADA; 
 				}else{
 					System.err.println("My mayonnaise went bad!! :(");
-				} 
-				degrees_ = 0; 
-				System.out.println("Done got that data! " + stuffInThePacket);
+				}
+				
+				return true;
+				//System.out.println("Done got that data! " + stuffInThePacket);
 			}  
-		} catch (IOException e) {  
-		//	System.out.println("IOException hit.");
+		} catch (Exception e) {  
+			System.out.println(e);
 			return false;  
 		}  
 		return false;  
@@ -85,10 +103,28 @@ public class Helmsman {
 		direction_ = NADA;  
 		return tmp;  
 	}  
-
-	public double get_degrees() {  
-		double tmp = degrees_;  
-		degrees_ = 0;  
+	
+	public double get_degrees_x() {  
+		double tmp = degrees_x;  
+		degrees_x = 0;  
 		return tmp;  
-	}  
+	}
+	
+	public double get_degrees_y() {  
+		double tmp = degrees_y;  
+		degrees_y = 0;  
+		return tmp;  
+	}
+	
+	public double get_width() {  
+		double tmp = degrees_width;  
+		degrees_width = 0;  
+		return tmp;  
+	}
+	
+	public double get_distance() {  
+		double tmp = distance;  
+		distance = 0;  
+		return tmp;  
+	}
 } 

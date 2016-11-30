@@ -40,6 +40,8 @@ public class ReleaseBall extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		RobotMap.ballHopperBallReleasePlunger.set(1);
+		Robot.ballHopper.isSwitchSet();
+		RobotMap.ballHopperBallReleasePlunger.set(1);
 		Robot.ballHopper.initializeCounter();
 	}
 
