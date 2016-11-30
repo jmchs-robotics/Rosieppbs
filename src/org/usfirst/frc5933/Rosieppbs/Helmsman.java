@@ -26,6 +26,7 @@ public class Helmsman {
 	private double degrees_y = 0;
 	private double degrees_width = 0;
 	private double distance = 0;
+	
 	public Helmsman(String ip, int port) {  
 		ip_ = ip;  
 		port_ = port;  
@@ -61,15 +62,13 @@ public class Helmsman {
 				String stuffInThePacket = new String (packet.getData(),0,packet.getLength());
 				stuffInThePacket = stuffInThePacket.toLowerCase(); //standardize everything. Just in case.
 				//read data
-				/* 
-				*/
 				
 				
 				//Array contains x position, y, width, distance, L/C/R 
 				//e.g. -100.14,20.33,15.75,172.56,L
 				String[] packetParsing = stuffInThePacket.split(","); //now is: {"-100.14","20.33","15.75","172.56","L"}
 				
-				
+				//
 				
 				degrees_x = Double.parseDouble(packetParsing[0]);
 				degrees_y = Double.parseDouble(packetParsing[1]);
@@ -92,8 +91,8 @@ public class Helmsman {
 				return true;
 				//System.out.println("Done got that data! " + stuffInThePacket);
 			}  
-		} catch (IOException e) {  
-		//	System.out.println("IOException hit.");
+		} catch (Exception e) {  
+			System.out.println(e);
 			return false;  
 		}  
 		return false;  
