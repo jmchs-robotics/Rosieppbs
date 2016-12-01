@@ -55,6 +55,8 @@ public class ReleaseBall extends Command {
 		double now = System.currentTimeMillis(); 		//Has a lap finished yet?
 		if(now - startTime >= 700){ 					//We done, boys!
 		return Robot.ballHopper.isSwitchSet(); 			//Seriously. Go home.
+		} else {
+			Robot.ballHopper.initializeCounter();
 		}
 		return false; 									//or not...
 	}

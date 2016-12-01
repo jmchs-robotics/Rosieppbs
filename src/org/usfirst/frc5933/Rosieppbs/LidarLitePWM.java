@@ -63,7 +63,7 @@ public class LidarLitePWM implements Runnable {
     output_ = new DigitalOutput(digitalOutput);
     debug_ = debug;
     delay_ = delay;
-    running_ = false;
+    running_ = true;
     reset();
   }
 
