@@ -47,7 +47,7 @@ public class StartFastFlyWheel extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.ballLauncherFlyWheel.set(-.58);
+    	RobotMap.ballLauncherFlyWheel.set(kFastFlyWheeelSpeed * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage());
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -65,6 +65,7 @@ public class AimLauncher extends Command {
         case Helmsman.NADA:
             if (DEBUG)
                 System.out.println("Skipping along...");
+            Robot.driveTrain.turn_left(0);
             return;
         case Helmsman.LEFT:
             if (DEBUG)

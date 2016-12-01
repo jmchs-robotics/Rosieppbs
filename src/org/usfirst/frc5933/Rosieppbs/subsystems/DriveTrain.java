@@ -63,7 +63,7 @@ public class DriveTrain extends Subsystem {
 	public void turn_left(double degrees) {  
 		// TODO: Figure out how to convert degrees into a rotation value  
 		frontLeft.set(degrees);
-		rearLeft.setPosition(degrees);
+		rearLeft.set(degrees);
 		frontRight.set(degrees);
 		rearRight.set(degrees);
 	}  
@@ -73,7 +73,7 @@ public class DriveTrain extends Subsystem {
 		frontRight.set(-degrees);
 		rearRight.set(-degrees);
 		frontLeft.set(-degrees);
-		rearLeft.setPosition(-degrees);
+		rearLeft.set(-degrees);
 	}  
 
 }
