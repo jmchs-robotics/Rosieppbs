@@ -114,7 +114,6 @@ public class OI {
         xButton = new JoystickButton(xBoxJoystick, 3);
         xButton.whenPressed(new StartMediumFlyWheel());
 
-
         // SmartDashboard Buttons
         SmartDashboard.putData("StopFlyWheel", new StopFlyWheel());
         SmartDashboard.putData("DefaultAutonomousCommand", new DefaultAutonomousCommand());
