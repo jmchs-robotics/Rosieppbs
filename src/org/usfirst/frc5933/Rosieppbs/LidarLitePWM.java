@@ -20,10 +20,10 @@ public class LidarLitePWM implements Runnable {
   // that is bigger than the maximum value you want to measure.
   private static final double [][] kPulseWidthTable = new double[][] {
       {0, 0},
-      {4.3, 12},
-      {6.8, 24},
-      {10.4, 36},
-      {0, 0},
+      {15.9, 60},
+      {18.2, 72},
+      {21.4, 84},
+      {24.9, 96},
       {0, 0},
       {0, 0},
       {0, 0},
@@ -63,7 +63,7 @@ public class LidarLitePWM implements Runnable {
     output_ = new DigitalOutput(digitalOutput);
     debug_ = debug;
     delay_ = delay;
-    running_ = false;
+    running_ = true;
     reset();
   }
 
