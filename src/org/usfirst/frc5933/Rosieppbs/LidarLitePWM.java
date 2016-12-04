@@ -19,40 +19,15 @@ public class LidarLitePWM implements Runnable {
   // Make sure that you have 1 more set of value in your table
   // that is bigger than the maximum value you want to measure.
   private static final double [][] kPulseWidthTable = new double[][] {
-      {0, 0},
-      {15.9, 60},
-      {18.2, 72},
-      {21.4, 84},
-      {24.9, 96},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
-      {0, 0},
+	  //raw, inches
+      {0, 0}, //base
+      {25.7, 96.5}, //near can short val
+      {30.6, 118.5}, //near can far val
+      {40, 154.5}, //mid can short val
+      {45.6, 176}, //mid can far val
+      {57.5, 223}, //far can short val
+      {59, 237.5}, //far can far val
+      {63.5, 246.5} //ceiling
   };
 
   public LidarLitePWM(int digitalInput, int digitalOutput, int samples, int delay, boolean debug) {
@@ -61,7 +36,7 @@ public class LidarLitePWM implements Runnable {
     counter_.setSemiPeriodMode(true);
     counter_.setSamplesToAverage(samples);
     output_ = new DigitalOutput(digitalOutput);
-    debug_ = debug;
+    debug_ = true;
     delay_ = delay;
     running_ = true;
     reset();
@@ -97,15 +72,15 @@ public class LidarLitePWM implements Runnable {
 
   private static double pulseWidthToInches(double pw) {
     int index = 0;
-    while (kPulseWidthTable.length+1 > index) {
+    while (kPulseWidthTable.length - 1 > index) {
       if (kPulseWidthTable[index][0] == pw ) {
         return kPulseWidthTable[index][1];
       } else if (kPulseWidthTable[index+1][0] == pw ) {
         return kPulseWidthTable[index+1][1];
-      } else if ((pw >  kPulseWidthTable[index][0]) && (kPulseWidthTable[index][0] > pw)) {
+      } else if ((pw >  kPulseWidthTable[index][0]) && (kPulseWidthTable[index + 1][0] > pw)) {
         break;
       }
-      ++index;
+      index ++;
     }
     
     if (Robot.debugModeEnabled) {
@@ -144,6 +119,7 @@ public class LidarLitePWM implements Runnable {
        trigger();
        snooze();
        measure();
+       System.out.println("Computed distance = " + getDistance());
     }
   }
 }
