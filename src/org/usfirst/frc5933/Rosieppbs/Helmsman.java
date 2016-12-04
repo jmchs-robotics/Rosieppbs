@@ -85,14 +85,16 @@ public class Helmsman {
 					
 					direction_ = NADA; 
 				}else{
-					System.err.println("My mayonnaise went bad!! :(");
+					if (Robot.debugModeEnabled)
+						System.err.println("My mayonnaise went bad!! :(");
 				}
 				
 				return true;
 				//System.out.println("Done got that data! " + stuffInThePacket);
 			}  
 		} catch (Exception e) {  
-			System.out.println(e);
+			if (Robot.debugModeEnabled)
+				System.out.println(e);
 			return false;  
 		}  
 		return false;  

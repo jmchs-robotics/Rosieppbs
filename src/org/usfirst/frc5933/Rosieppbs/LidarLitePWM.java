@@ -75,14 +75,14 @@ public class LidarLitePWM implements Runnable {
   private void trigger() {
     reset();
     output_.set(false);
-    if (debug_)
-      System.out.println("LidarLightPWM::trigger");
+    if (Robot.debugModeEnabled)
+    	System.out.println("LidarLightPWM::trigger");
   }
 
   private void measure() {
     pulseWidth_ = counter_.getPeriod() * kPeriodScalar;
-    if (debug_)
-      System.out.println("LidarLightPWM::measure " + pulseWidth_);
+    if (Robot.debugModeEnabled)
+    	System.out.println("LidarLightPWM::measure " + pulseWidth_);
 
     output_.set(true);
   }
@@ -108,7 +108,7 @@ public class LidarLitePWM implements Runnable {
       ++index;
     }
     
-    if (index+1 >= kPulseWidthTable.length) {
+    if (Robot.debugModeEnabled) {
       System.err.println("Ran off the end of the PulseWidthTable");
       return 0;
     }
