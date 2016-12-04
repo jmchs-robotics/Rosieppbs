@@ -58,11 +58,11 @@ public class DefaultTeleopCommand extends Command {
             if (moveDistance < 1.0) {
                 moveDistance += 0.1;
             } else {
-                if (DEBUG) {
+                if (Robot.debugModeEnabled) {
                     System.out.println("Maximum value achieved.");
                 }
             }
-            if (DEBUG) {
+            if (Robot.debugModeEnabled) {
                 System.out.println("The robot will now adjust at " + moveDistance + " input value.");
             }
             tapped = true;
@@ -71,11 +71,11 @@ public class DefaultTeleopCommand extends Command {
             if (moveDistance > 0.3) {
                 moveDistance -= 0.1;
             } else {
-                if (DEBUG) {
+                if (Robot.debugModeEnabled) {
                     System.out.println("Minimum value achieved.");
                 }
             }
-            if (DEBUG) {
+            if (Robot.debugModeEnabled) {
                 System.out.println("The robot will now adjust at " + moveDistance + " input value.");
             }
             tapped = true;
@@ -97,11 +97,11 @@ public class DefaultTeleopCommand extends Command {
             if (moveDistance < 1.0) {
                 moveDistance += 0.1;
             } else {
-                if (DEBUG) {
+                if (Robot.debugModeEnabled) {
                     System.out.println("Maximum value achieved.");
                 }
             }
-            if (DEBUG) {
+            if (Robot.debugModeEnabled) {
                 System.out.println("The robot will now adjust at " + moveDistance + " input value.");
             }
             tapped2 = true;
@@ -110,11 +110,11 @@ public class DefaultTeleopCommand extends Command {
             if (moveDistance > 0.3) {
                 moveDistance -= 0.1;
             } else {
-                if (DEBUG) {
+                if (Robot.debugModeEnabled) {
                     System.out.println("Minimum value achieved.");
                 }
             }
-            if (DEBUG) {
+            if (Robot.debugModeEnabled) {
                 System.out.println("The robot will now adjust at " + moveDistance + " input value.");
             }
             tapped2 = true;
