@@ -73,7 +73,7 @@ public class RobotMap {
         ballLauncherFlyWheel = new Jaguar(0);
         LiveWindow.addActuator("BallLauncher", "FlyWheel", (Jaguar) ballLauncherFlyWheel);
         
-        ballLauncherSpock = new LidarLitePWM(9, 8, 10, 100, true);
+        ballLauncherSpock = new LidarLitePWM(9, 8, 10, 100, false);
         
         lidarThread = new Thread(ballLauncherSpock);
 		lidarThread.start();
