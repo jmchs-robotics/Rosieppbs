@@ -39,7 +39,7 @@ public class LidarLitePWM implements Runnable {
     counter_.setSemiPeriodMode(true);
     counter_.setSamplesToAverage(samples);
     output_ = new DigitalOutput(digitalOutput);
-    debug_ = true;
+    debug_ = debug;
     delay_ = delay;
     running_ = true;
     reset();
