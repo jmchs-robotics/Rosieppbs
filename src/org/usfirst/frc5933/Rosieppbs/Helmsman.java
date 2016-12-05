@@ -75,26 +75,24 @@ public class Helmsman {
 				degrees_width = Double.parseDouble(packetParsing[2]);
 				distance = Double.parseDouble(packetParsing[3]);
 				
-				if (packetParsing[4] == "l"){
+				if (packetParsing[4] == "l") {
 					direction_ = LEFT; 
 
-				}else if (packetParsing[4] == "r"){
+				} else if (packetParsing[4] == "r") {
 					direction_ = RIGHT; 
 					
-				}else if (packetParsing[4] == "c"){
+				} else if (packetParsing[4] == "c") {
 					
 					direction_ = NADA; 
-				}else{
-					if (Robot.debugModeEnabled)
-						System.err.println("My mayonnaise went bad!! :(");
+				} else {
+				    System.err.println("My mayonnaise went bad!! :(");
 				}
 				
 				return true;
 				//System.out.println("Done got that data! " + stuffInThePacket);
 			}  
 		} catch (Exception e) {  
-			if (Robot.debugModeEnabled)
-				System.out.println(e);
+		    System.err.println(e);
 			return false;  
 		}  
 		return false;  

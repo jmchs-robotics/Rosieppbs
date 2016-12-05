@@ -83,7 +83,7 @@ public class LidarLitePWM implements Runnable {
       index ++;
     }
     
-    if (Robot.debugModeEnabled) {
+    if (index+1 >= kPulseWidthTable.length) {
       System.err.println("Ran off the end of the PulseWidthTable");
       return 0;
     }
