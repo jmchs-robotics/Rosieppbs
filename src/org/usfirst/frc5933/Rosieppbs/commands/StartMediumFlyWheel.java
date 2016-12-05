@@ -41,12 +41,13 @@ public class StartMediumFlyWheel extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		RobotMap.ballLauncherFlyWheel.set(kMediumFlyWheeelSpeed * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage());
+        Robot.ballLauncher.resetFlyWheelAdjustment();
+		Robot.ballLauncher.set(kMediumFlyWheeelSpeed * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage());
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		RobotMap.ballLauncherFlyWheel.set(kMediumFlyWheeelSpeed * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage());
+		Robot.ballLauncher.set(kMediumFlyWheeelSpeed * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
