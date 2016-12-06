@@ -12,9 +12,6 @@
 package org.usfirst.frc5933.Rosieppbs.subsystems;
 
 import org.usfirst.frc5933.Rosieppbs.RobotMap;
-import org.usfirst.frc5933.Rosieppbs.commands.*;
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SpeedController;
 
 import edu.wpi.first.wpilibj.command.Subsystem;

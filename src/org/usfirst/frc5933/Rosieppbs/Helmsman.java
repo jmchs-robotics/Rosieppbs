@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.net.DatagramPacket;  
 import java.net.DatagramSocket;  
 import java.net.InetAddress;
-import java.net.MulticastSocket;
-import java.net.SocketException;  
 import java.net.UnknownHostException;  
 
 public class Helmsman {  
@@ -20,7 +18,6 @@ public class Helmsman {
 	private boolean is_connected_ = false;  
 	private byte[] data_ = new byte[1024];  
 	private DatagramSocket socket_;  
-	private InetAddress addr_;  
 	private String direction_ = new String();  
 	private double degrees_x = 0;
 	private double degrees_y = 0;
@@ -36,8 +33,7 @@ public class Helmsman {
 		try {  
 			socket_ = new DatagramSocket(port_);  
 			socket_.setSoTimeout(5);  
-			addr_ = InetAddress.getByName(ip_);  
-			//socket_.joinGroup(addr_);
+			InetAddress.getByName(ip_);  
 			is_connected_ = true;
 		} catch (UnknownHostException ex) {  
 			return false;  

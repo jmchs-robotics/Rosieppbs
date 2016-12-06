@@ -13,11 +13,8 @@ package org.usfirst.frc5933.Rosieppbs.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc5933.Rosieppbs.FieldElements;
 import org.usfirst.frc5933.Rosieppbs.Robot;
-import org.usfirst.frc5933.Rosieppbs.RobotMap;
 import org.usfirst.frc5933.Rosieppbs.subsystems.BallLauncher;
-import org.usfirst.frc5933.Rosieppbs.subsystems.Electrical;
 
 /**
  *
@@ -43,15 +40,13 @@ public class StartSlowFlyWheel extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.ballLauncher.resetFlyWheelAdjustment();
-        double value = BallLauncher.kSlowFlyWheeelSpeed * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage();
-        Robot.ballLauncher.set(value, FieldElements.kNearCanLidarFrontDistance);
+        Robot.ballLauncher.resetFlyWheelManualAdjustment();
+        Robot.ballLauncher.set(BallLauncher.FlyWheelSpeed.SLOW);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        double value = BallLauncher.kSlowFlyWheeelSpeed * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage();
-        Robot.ballLauncher.set(value, FieldElements.kNearCanLidarFrontDistance);
+        Robot.ballLauncher.set(BallLauncher.FlyWheelSpeed.SLOW);
     }
 
     // Make this return true when this Command no longer needs to run execute()

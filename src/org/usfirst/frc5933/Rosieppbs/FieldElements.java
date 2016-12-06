@@ -6,12 +6,12 @@ public class FieldElements {
     public static final double kGarbageCanRadius = 11;
 
     // In Inches
-    public static final double kLidarOffsetFromCenter = 8; // FIXME
+    public static final double kLidarOffsetFromCenter = 12.5; // FIXME: I think this is correct, but double check
 
     // Center of circle to center of garbage can in inches
-    public static final double kNearCanCenterDistance = 96.5; // FIXME
-    public static final double kMidCanCenterDistance = 154.5; // FIXME
-    public static final double kFarCanCenterDistance = 223; // FIXME
+    public static final double kNearCanCenterDistance = (10 * 12);
+    public static final double kMidCanCenterDistance = (15 * 12);
+    public static final double kFarCanCenterDistance = (20 * 12);
 
     // From the Lidar to the front of the can
     public static final double kNearCanLidarFrontDistance = kNearCanCenterDistance - kGarbageCanRadius - kLidarOffsetFromCenter;    

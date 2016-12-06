@@ -12,7 +12,6 @@
 package org.usfirst.frc5933.Rosieppbs.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc5933.Rosieppbs.Robot;
 
 /**
  *

@@ -37,7 +37,7 @@ public class IncrementFlyWheelSpeed extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.ballLauncher.increaseFlyWheelAdjustment();
+        Robot.ballLauncher.increaseFlyWheelManualAdjustment();
     }
 
     // Called repeatedly when this Command is scheduled to run

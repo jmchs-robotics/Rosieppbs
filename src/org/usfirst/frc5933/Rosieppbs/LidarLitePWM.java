@@ -18,17 +18,17 @@ public class LidarLitePWM implements Runnable {
   // Make sure that you have 1 more set of value in your table
   // that is bigger than the maximum value you want to measure.
   
-  // FIXME: Why is the garbage can 22, for short, and 21.5 for the medium, and 14.5 for the long ???
+  // FIXME: Why is the garbage can diameter 22 inches, for short, 21.5 for the medium, and 14.5 for the long ???
   // I didn't know that garbage can got smaller the further away it got..... :)
-  // We can replace the y values with the constants from the FieldElements class
+  // We can also replace the y values with the constants from the FieldElements class
   static double [][] kPulseWidthTable = new double[][] {
 	  // raw, inches
       {0, 0},   // base
-      {25.7, 96.5}, // near can short val
+      {25.7, 96.5}, // near can short val (calculated value is 96.5, yeah!!!! we match)
       {30.6, 118.5}, // near can far val 
-      {40, 154.5}, // mid can short val
+      {40, 154.5}, // mid can short val  (calculated value is 156.5 FIXME)
       {45.6, 176}, // mid can far val
-      {57.5, 223}, // far can short val
+      {57.5, 223}, // far can short val (calculated value is 216.5 FIXME)
       {59, 237.5}, // far can far val
       {63.5, 246.5} // ceiling
   };
