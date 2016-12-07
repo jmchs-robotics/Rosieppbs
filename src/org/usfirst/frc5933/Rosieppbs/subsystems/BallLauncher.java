@@ -78,33 +78,37 @@ public class BallLauncher extends Subsystem {
         --flyWheelManualAdjustmentCount;
     }
     
-    private double getLidarValue() {
+    private double getLidarValue(double fudgeFactor) {
         // the slope intercept formulas
         // m = y2 - y1 / x2 - x1
         // b = y - mx
         // y = mx + b
          double slope = (kFastFlyWheelSpeed - kSlowFlyWheelSpeed) / (FieldElements.kFarCanCenterDistance - FieldElements.kNearCanCenterDistance);
          double b = kSlowFlyWheelSpeed - (slope * FieldElements.kNearCanCenterDistance);
-         double y = (slope * (spock.getDistance() + FieldElements.kLidarOffsetFromCenter + FieldElements.kGarbageCanRadius + 1)) + b;
+         double y = (slope * (spock.getDistance() + FieldElements.kLidarOffsetFromCenter + FieldElements.kGarbageCanRadius + fudgeFactor)) + b;
          return y;
     }
     
     public void set(FlyWheelSpeed speed) {
        double startingValue = 0;
+       double fudge = -3;
        switch (speed) {
             case SLOW:
+                fudge = 1;
                 startingValue = kSlowFlyWheelSpeed;
             break;
             case MEDIUM:
+                fudge = -3;
                 startingValue = kMediumFlyWheelSpeed;
             break;
             case FAST:
+                fudge = -3;
                 startingValue = kFastFlyWheelSpeed;
             break;
        }
 
        if (Robot.useLidar()) {
-           startingValue = getLidarValue();
+           startingValue = getLidarValue(fudge);
        }
        
        // System.out.println("DEBUG: " + getFlyWheelManualAdjustment());

@@ -125,7 +125,7 @@ public class LidarLitePWM implements Runnable {
 			trigger();
 			snooze();
 			measure();
-			System.out.println(pulseWidth_);
+			//System.out.println(pulseWidth_);
 		}
 	}
 }
