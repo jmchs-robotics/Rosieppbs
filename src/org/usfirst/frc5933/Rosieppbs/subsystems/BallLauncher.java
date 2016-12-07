@@ -85,7 +85,7 @@ public class BallLauncher extends Subsystem {
         // y = mx + b
          double slope = (kFastFlyWheelSpeed - kSlowFlyWheelSpeed) / (FieldElements.kFarCanCenterDistance - FieldElements.kNearCanCenterDistance);
          double b = kSlowFlyWheelSpeed - (slope * FieldElements.kNearCanCenterDistance);
-         double y = (slope * (spock.getDistance() + FieldElements.kLidarOffsetFromCenter + FieldElements.kGarbageCanRadius - 3)) + b;
+         double y = (slope * (spock.getDistance() + FieldElements.kLidarOffsetFromCenter + FieldElements.kGarbageCanRadius + 1)) + b;
          return y;
     }
     

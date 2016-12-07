@@ -24,6 +24,7 @@ public class LidarLitePWM implements Runnable {
 	static double [][] kPulseWidthTable = new double[][] {
 		// raw, inches
 		{0, 0},   // base
+		{23.9,90},
 		{25.7, 96.5}, // near can short val (calculated value is 96.5, yeah!!!! we match)
 		{30.6, 118.5}, // near can far val 
 		{40, 154.5}, // mid can short val  (calculated value is 156.5 FIXME)
@@ -124,6 +125,7 @@ public class LidarLitePWM implements Runnable {
 			trigger();
 			snooze();
 			measure();
+			System.out.println(pulseWidth_);
 		}
 	}
 }
