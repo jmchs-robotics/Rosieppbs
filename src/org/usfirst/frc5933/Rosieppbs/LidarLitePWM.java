@@ -123,7 +123,6 @@ public class LidarLitePWM implements Runnable {
        trigger();
        snooze();
        measure();
-       System.out.println("Computed distance = " + getDistance());
     }
   }
 }

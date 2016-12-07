@@ -25,10 +25,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class BallLauncher extends Subsystem {
     private int flyWheelManualAdjustmentCount;
-    public static final double kFlyWheelAdjustmentIncrement = 0.10; // A small value that was picked from a magical hat
+    public static final double kFlyWheelAdjustmentIncrement = 0.05; // A small value that was picked from a magical hat
     
     // Values that were determined by testing over and again.
-    public static final double kSlowFlyWheelSpeed = -0.40;
+    public static final double kSlowFlyWheelSpeed = -0.37;
     public static final double kMediumFlyWheelSpeed = -0.50;
     public static final double kFastFlyWheelSpeed = -0.63;
     
@@ -85,7 +85,7 @@ public class BallLauncher extends Subsystem {
         // y = mx + b
          double slope = (kFastFlyWheelSpeed - kSlowFlyWheelSpeed) / (FieldElements.kFarCanCenterDistance - FieldElements.kNearCanCenterDistance);
          double b = kSlowFlyWheelSpeed - (slope * FieldElements.kNearCanCenterDistance);
-         double y = (slope * spock.getDistance()) + b;
+         double y = (slope * (spock.getDistance() - FieldElements.kLidarOffsetFromCenter + FieldElements.kGarbageCanRadius)) + b;
          return y;
     }
     
@@ -103,11 +103,13 @@ public class BallLauncher extends Subsystem {
             break;
        }
 
-       if (Robot.useLidarToAdjustFlyWheel) {
+       if (Robot.useLidar()) {
            startingValue = getLidarValue();
        }
        
-        double adjustedBatteryValue = startingValue * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage();
+       // System.out.println("DEBUG: " + getFlyWheelManualAdjustment());
+
+       double adjustedBatteryValue = startingValue * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage();
         flyWheel.set(adjustedBatteryValue + getFlyWheelManualAdjustment());
     }
 }

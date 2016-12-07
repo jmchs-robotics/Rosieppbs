@@ -6,7 +6,7 @@ public class FieldElements {
     public static final double kGarbageCanRadius = 11;
 
     // In Inches
-    public static final double kLidarOffsetFromCenter = 12.5; // FIXME: I think this is correct, but double check
+    public static final double kLidarOffsetFromCenter = 12; // FIXME: I think this is correct, but double check
 
     // Center of circle to center of garbage can in inches
     public static final double kNearCanCenterDistance = (10 * 12);
