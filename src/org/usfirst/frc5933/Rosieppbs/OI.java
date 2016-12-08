@@ -92,7 +92,7 @@ public class OI {
         leftBumper2 = new JoystickButton(xBoxJoystick2, 5);
         leftBumper2.whenPressed(new ReleaseBall());
         rightBumper2 = new JoystickButton(xBoxJoystick2, 6);
-        rightBumper2.whenPressed(new AimLauncher());
+        rightBumper2.whenPressed(new RapidFire());
         bButton2 = new JoystickButton(xBoxJoystick2, 2);
         bButton2.whenPressed(new StartFastFlyWheel());
         aButton2 = new JoystickButton(xBoxJoystick2, 1);
