@@ -22,6 +22,11 @@ sourceSets {
             srcDir 'src'
         }
     }
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
 }
 
 gradlerio.robotClass = 'org.usfirst.frc5933.Rosieppbs.Robot'
@@ -44,4 +49,8 @@ task genJavadoc(type: Jar, dependsOn: javadoc) {
 
 artifacts {
     archives genJavadoc
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
 }
