@@ -33,10 +33,10 @@ public class Helmsman {
 		try {  
 			socket_ = new DatagramSocket(port_);  
 			socket_.setSoTimeout(5);  
-			InetAddress.getByName(ip_);  
+			//InetAddress.getByName(ip_);  
 			is_connected_ = true;
-		} catch (UnknownHostException ex) {  
-			return false;  
+		//} catch (UnknownHostException ex) {  
+		//	return false; 
 		} catch (IOException ex) {  
 			return false;  
 		}  
@@ -51,25 +51,32 @@ public class Helmsman {
 		DatagramPacket packet = new DatagramPacket(data_, data_.length);//, addr_, port_);  
 		try {  
 			packet.setLength(data_.length);
+			System.out.println("I made it to the socket.recieve");
 			socket_.receive(packet);  
+			System.out.println("I have proceeded past socket.recieve");
 			if (packet.getData().length > 0) {  
 				// TODO: Parse the data and set the direction and degrees  
 				
 				String stuffInThePacket = new String (packet.getData(),0,packet.getLength());
+				//String contains: x position, y, width, distance, L/C/R 
+				//e.g. "-100.14,20.33,15.75,172.56,L "
 				stuffInThePacket = stuffInThePacket.toLowerCase(); //standardize everything. Just in case.
-				//read data
 				
+				System.out.println("Stuff in the packet is: " + stuffInThePacket);
+				//now is "-100.14,20.33,15.75,172.56,l "
+				String[] packetParsing = stuffInThePacket.split(","); //now is: {"-100.14","20.33","15.75","172.56","l "}
 				
-				//Array contains x position, y, width, distance, L/C/R 
-				//e.g. -100.14,20.33,15.75,172.56,L
-				String[] packetParsing = stuffInThePacket.split(","); //now is: {"-100.14","20.33","15.75","172.56","L"}
+				int count = 0; //keep track of the index in the for loop below
+				for (String x : packetParsing){
+					packetParsing[count] = x.trim(); //take the spaces out. just in case.
+					count ++; //increment the index
+				}
+				//now is: {"-100.14","20.33","15.75","172.56","l"} Look at the last index for the difference
 				
-				//
-				
-				degrees_x = Double.parseDouble(packetParsing[0]);
-				degrees_y = Double.parseDouble(packetParsing[1]);
-				degrees_width = Double.parseDouble(packetParsing[2]);
-				distance = Double.parseDouble(packetParsing[3]);
+				degrees_x = Double.parseDouble(packetParsing[0]); //following example, is -100.14
+				degrees_y = Double.parseDouble(packetParsing[1]); //is 20.33
+				degrees_width = Double.parseDouble(packetParsing[2]); //is 15.75
+				distance = Double.parseDouble(packetParsing[3]); //is 172.56
 				
 				if (packetParsing[4] == "l") {
 					direction_ = LEFT; 
@@ -78,8 +85,8 @@ public class Helmsman {
 					direction_ = RIGHT; 
 					
 				} else if (packetParsing[4] == "c") {
-					
 					direction_ = NADA; 
+					
 				} else {
 				    System.err.println("My mayonnaise went bad!! :(");
 				}
@@ -94,6 +101,8 @@ public class Helmsman {
 		return false;  
 	}  
 
+	
+	//the below methods are the easiest way to access the data that was grabbed from the string below
 	public String get_direction() {  
 		String tmp = direction_;  
 		direction_ = NADA;  
