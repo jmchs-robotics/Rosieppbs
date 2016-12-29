@@ -33,11 +33,12 @@ public class Helmsman {
 		try {  
 			socket_ = new DatagramSocket(port_);  
 			socket_.setSoTimeout(5);  
-			//InetAddress.getByName(ip_);  
+			InetAddress.getByName(ip_);  
 			is_connected_ = true;
-		//} catch (UnknownHostException ex) {  
-		//	return false; 
+		} catch (UnknownHostException ex) {  
+			return false; 
 		} catch (IOException ex) {  
+			System.out.println("IOExcepton " + ex.getMessage());
 			return false;  
 		}  
 		return true;  
@@ -51,9 +52,7 @@ public class Helmsman {
 		DatagramPacket packet = new DatagramPacket(data_, data_.length);//, addr_, port_);  
 		try {  
 			packet.setLength(data_.length);
-			System.out.println("I made it to the socket.recieve");
 			socket_.receive(packet);  
-			System.out.println("I have proceeded past socket.recieve");
 			if (packet.getData().length > 0) {  
 				// TODO: Parse the data and set the direction and degrees  
 				
@@ -72,19 +71,19 @@ public class Helmsman {
 					count ++; //increment the index
 				}
 				//now is: {"-100.14","20.33","15.75","172.56","l"} Look at the last index for the difference
-				
+
 				degrees_x = Double.parseDouble(packetParsing[0]); //following example, is -100.14
 				degrees_y = Double.parseDouble(packetParsing[1]); //is 20.33
 				degrees_width = Double.parseDouble(packetParsing[2]); //is 15.75
 				distance = Double.parseDouble(packetParsing[3]); //is 172.56
-				
-				if (packetParsing[4] == "l") {
+
+				if (packetParsing[4].equalsIgnoreCase("l")) {
 					direction_ = LEFT; 
 
-				} else if (packetParsing[4] == "r") {
+				} else if (packetParsing[4].equalsIgnoreCase("r")) {
 					direction_ = RIGHT; 
 					
-				} else if (packetParsing[4] == "c") {
+				} else if (packetParsing[4].equalsIgnoreCase("c")) {
 					direction_ = NADA; 
 					
 				} else {
