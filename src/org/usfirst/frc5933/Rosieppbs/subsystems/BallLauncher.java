@@ -94,7 +94,7 @@ public class BallLauncher extends Subsystem {
        double fudge = -3;
        switch (speed) {
             case SLOW:
-                fudge = 1;
+                fudge = 3;
                 startingValue = kSlowFlyWheelSpeed;
             break;
             case MEDIUM:

@@ -42,7 +42,7 @@ public class ReleaseBall extends Command {
 	protected void initialize() {
 		RobotMap.ballHopperBallReleasePlunger.set(0.5);
 		Robot.ballHopper.initializeCounter();
-		startTime = System.currentTimeMillis(); 		//start your engines!!!
+		startTime = System.currentTimeMillis(); 	//start your engines!!!
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -54,8 +54,9 @@ public class ReleaseBall extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		double now = System.currentTimeMillis(); 		//Has a lap finished yet?
-		if(now - startTime >= 700){ 					//We done, boys!
-			return Robot.ballHopper.isSwitchSet(); 		//Seriously. Go home.
+		if((now - startTime >= 700) && Robot.ballHopper.isSwitchSet()){ 	
+			Robot.doneDidIt(); //We done, boys!
+			return true; 		//Seriously. Go home.
 		} else {
 			Robot.ballHopper.initializeCounter();
 		}
