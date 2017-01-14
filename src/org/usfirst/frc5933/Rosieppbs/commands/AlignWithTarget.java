@@ -58,3 +58,6 @@ public class AlignWithTarget extends Command {
     protected void interrupted() {
     }
 }
+
+//we will start at the right and we will turn to the left until the the target is found
+
