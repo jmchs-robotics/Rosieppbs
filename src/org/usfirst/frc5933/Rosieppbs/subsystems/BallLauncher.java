@@ -115,5 +115,6 @@ public class BallLauncher extends Subsystem {
 
        double adjustedBatteryValue = startingValue * Electrical.kFullyChargedBatteryVoltage / RobotMap.electricalPowerDistributionPanel.getVoltage();
         flyWheel.set(adjustedBatteryValue + getFlyWheelManualAdjustment());
+        System.out.println("Flywheel voltage: " + Math.abs(adjustedBatteryValue + getFlyWheelManualAdjustment()));
     }
 }
